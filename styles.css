@@ -1,0 +1,111 @@
+.container {
+    width: 30%;
+    margin: 0 auto;
+    
+}
+.wrapper {
+    width: 320px;
+    margin: 0 auto;
+    border: 1px solid gray;
+    padding: 20px;
+    text-align: center;
+    background-color: #ccc;
+}
+
+.guess_wrapper {float: left;width: 50%;}
+.result_wrapper {float: right;width: 16%;text-align: right}
+.result_container {margin-bottom: 30px;min-height: 300px;}
+.result_wrapper > div {
+    border: 1px solid gray;
+    border-radius: 50%;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin: 3px;
+    float: left;
+}
+.choice {
+    margin-bottom: 30px;
+}
+.guess {
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    margin: 3px;
+    float: left;
+    border: 4px solid white;
+}
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+  background: #CCC;
+}
+.choice button {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    outline: 1px solid gray;
+}
+ul {
+    padding-left: 0;
+    margin-left: 0;
+}
+li{
+    list-style: none;
+    display: inline;
+}
+#hint {
+    min-height: 200px;
+}
+.clearer::after {
+    content:'';
+    display: block;
+    clear: both;
+}
+.gamebtns button {
+    box-sizing: border-box;
+    width: 100px;
+    height: 50px;
+}
+#check {float: left;}
+
+#new-game{
+/*    display: none;*/
+    float: right;
+}
+.color_red {
+    background-color: red;
+    color: red;
+}
+.color_blue {
+    background-color: blue;
+    color: blue;
+}
+.color_green {
+    background-color: green;
+    color: green;
+}
+.color_yellow {
+    background-color: yellow;
+    color: yellow;
+}
+.color_orange {
+    background-color: orange;
+    color: orange;
+}
+.color_purple {
+    background-color: purple;
+    color: purple;
+}
+.color_black {
+    background-color: black;
+}
+.color_white {
+    background-color: white;
+}
+
+
+
+
+
