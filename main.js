@@ -60,7 +60,7 @@ document.querySelectorAll('.choice button').forEach(function(element){
 
     });
 });
-    
+
 // check colors
 
 function checkCombination(){
@@ -69,22 +69,50 @@ for(var i = 0; i < 4; i++){
   
   if(userCombination[i] === tempCombination[i]){
       
-        document.querySelector('.result_wrapper').innerHTML += resultsTrue;
+//        document.querySelector('.result_wrapper').innerHTML += resultsTrue;
         correct_number_correct_spot++;
       
   } else if(userCombination[i] !== tempCombination[i] && userCombination.includes(tempCombination[i]) === true){
  
-        document.querySelector('.result_wrapper').innerHTML += resultsFalse;
-        results[i].className = 'color_white';
+//        document.querySelector('.result_wrapper').innerHTML += resultsFalse;
+//        results[i].className = 'color_white';
         correct_number_wrong_spot++;
 
   } else if(userCombination[i] !== tempCombination[i] && userCombination.includes(tempCombination[i]) === false){
       
-        document.querySelector('.result_wrapper').innerHTML += results;
+//        document.querySelector('.result_wrapper').innerHTML += results;
       
   }
   
 }
+    if(correct_number_correct_spot > 0){
+        for(var j = 1; j <= correct_number_correct_spot; j++){
+            document.querySelector('.result_wrapper').innerHTML += resultsTrue;
+        }
+    }
+    if(correct_number_wrong_spot > 0){
+        for(var k = 1; k <= correct_number_wrong_spot; k++){
+            document.querySelector('.result_wrapper').innerHTML += resultsFalse;
+            results[i].className = 'color_white';
+        }  
+
+    }
+    var quessNumber = correct_number_correct_spot + correct_number_wrong_spot;
+        console.log(quessNumber);
+
+    if(quessNumber == 0){
+        for(var t = 0; t < 4; t++){
+            document.querySelector('.result_wrapper').innerHTML += results;
+        }
+    }else if(quessNumber < 4){
+        for(var z = 0; z < 4 - quessNumber; z++){
+            document.querySelector('.result_wrapper').innerHTML += results;
+        }
+    } 
+    
+    
+
+
 
     console.log(correct_number_wrong_spot + ' wrong spot');
     console.log(correct_number_correct_spot + ' correct spot');

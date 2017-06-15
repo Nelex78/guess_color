@@ -7,6 +7,7 @@
 <body>
 <div class="container">     
     <div class="wrapper clearer">
+        <h1>Mastermind</h1>
         <div class="choice">
             <button class="color_red" value="1">1</button>
             <button class="color_blue" value="2">2</button>
@@ -24,12 +25,20 @@
 
             </div>    
         </div>
-        <div class="gamebtns" class="clearer">
+        <div class="gamebtns clearer">
             <button id="check">Check!</button>
             <button id="new-game">New Game!</button>
         </div>
-        
+        <div class="result_wrapper result_wrapper_bottom clearer">
+            <div class="color_black"></div>
+            <p>Right colour in the right position</p>
+        </div>
+        <div class="result_wrapper result_wrapper_bottom clearer">
+            <div class="color_white"></div>
+            <p>Right colour but in the wrong position</p>
+        </div>
     </div>
+    
 </div>      
 <script type="text/javascript" src="main.js"></script>
 </body>
