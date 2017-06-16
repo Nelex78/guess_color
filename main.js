@@ -65,26 +65,21 @@ document.querySelectorAll('.choice button').forEach(function(element){
 
 function checkCombination(){
 
-for(var i = 0; i < 4; i++){
-  
-  if(userCombination[i] === tempCombination[i]){
-      
-//        document.querySelector('.result_wrapper').innerHTML += resultsTrue;
-        correct_number_correct_spot++;
-      
-  } else if(userCombination[i] !== tempCombination[i] && userCombination.includes(tempCombination[i]) === true){
- 
-//        document.querySelector('.result_wrapper').innerHTML += resultsFalse;
-//        results[i].className = 'color_white';
-        correct_number_wrong_spot++;
+    for(var i = 0; i < 4; i++){
 
-  } else if(userCombination[i] !== tempCombination[i] && userCombination.includes(tempCombination[i]) === false){
-      
-//        document.querySelector('.result_wrapper').innerHTML += results;
-      
-  }
-  
-}
+      if(userCombination[i] === tempCombination[i]){
+
+          correct_number_correct_spot++;
+
+      } else if(userCombination[i] !== tempCombination[i] && userCombination.indexOf(tempCombination[i]) !== -1){
+
+            correct_number_wrong_spot++;
+
+      } 
+
+    }
+    
+    // show results wrong/correct spot
     if(correct_number_correct_spot > 0){
         for(var j = 1; j <= correct_number_correct_spot; j++){
             document.querySelector('.result_wrapper').innerHTML += resultsTrue;
@@ -109,14 +104,7 @@ for(var i = 0; i < 4; i++){
             document.querySelector('.result_wrapper').innerHTML += results;
         }
     } 
-    
-    
-
-
-
-    console.log(correct_number_wrong_spot + ' wrong spot');
-    console.log(correct_number_correct_spot + ' correct spot');
-    
+      
     if(correct_number_correct_spot === 4){
         
         document.querySelector('.choice').className += ' disabled';
@@ -125,7 +113,6 @@ for(var i = 0; i < 4; i++){
     } else {
         
         document.querySelector('.choice').classList.remove('disabled');
-//        document.querySelector('#check').classList.remove('disabled');
         document.querySelector('#check').className += ' disabled';
         userCombination = [];
         correct_number_wrong_spot = 0;
@@ -133,12 +120,18 @@ for(var i = 0; i < 4; i++){
         
     }
     
+    if(userCombination.join('') === tempCombination.join('')){
+        alert('Your guess is correct');
+    }
+    
+//    console.log(correct_number_wrong_spot + ' wrong spot');
+//    console.log(correct_number_correct_spot + ' correct spot');
 
 
-}
+} // END checkCombination function
 
-// reset game
-function resetGame(){
+// start game
+function startGame(){
     minVal = 1;
     maxVal = 7;
     userCombination = [];
@@ -149,17 +142,9 @@ function resetGame(){
     document.querySelector('.guess_wrapper').innerHTML = '';
     document.querySelector('.result_wrapper').innerHTML = '';
     document.querySelector('.choice').classList.remove('disabled');
-    
-}
-
-// start game
-function startGame(){
-    
-    resetGame();
     console.log(generateCombination(minVal, maxVal));
-
-
 }
+
 document.querySelector("#new-game").addEventListener("click", startGame);
 document.querySelector("#check").addEventListener("click", checkCombination);
 

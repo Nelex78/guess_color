@@ -17,7 +17,7 @@ button:focus {outline:0 none;}
 .result_wrapper {float: right;width: 16%;text-align: right}
 .result_wrapper.result_wrapper_bottom {width: 100%;margin-top: 15px;}
 .result_wrapper.result_wrapper_bottom > div {float: left;}
-.result_wrapper.result_wrapper_bottom > p {margin: 0 10px 0 5px;float:left;}
+.result_wrapper.result_wrapper_bottom > p {margin: 0 0 0 5px;float:left;}
 .result_container {margin-bottom: 30px;min-height: 300px;}
 .result_wrapper > div {
     border: 1px solid gray;
