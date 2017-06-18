@@ -14,7 +14,7 @@ var results = '<div></div>';
 var resultsTrue = '<div class="color_black"></div>';
 var resultsFalse = '<div class="color_white"></div>';
 var userCombination = [];
-var tempCombination = [];
+var mainCombination = [];
 var number;
 var correct_number_correct_spot = 0;
 var correct_number_wrong_spot = 0;
@@ -25,16 +25,17 @@ document.querySelector('#check').className += ' disabled';
 
 // generate random combination
 function generateCombination(min, max){
-    tempCombination = [];
+    mainCombination = [];
     
-    while(tempCombination.length < 4){
+    while(mainCombination.length < 4){
         number = Math.floor(Math.random() * (max - min)) + min;
 
-            tempCombination.push(number);             
+            mainCombination.push(number);             
 
     }
 
-    return tempCombination;
+    return mainCombination;
+         
 }
 //get value from buttons and create user combination
 document.querySelectorAll('.choice button').forEach(function(element){
@@ -45,7 +46,7 @@ document.querySelectorAll('.choice button').forEach(function(element){
         correct_number_wrong_spot = 0;
         
         userCombination.push(parseInt(event.target.textContent, 10));
-        console.log(userCombination);
+//        console.log(userCombination);
 
         guessElems += '<div class="guess' + ' ' + event.target.className + '">' + event.target.textContent + '</div>';
         document.querySelector('.guess_wrapper').innerHTML = guessElems;
@@ -67,43 +68,38 @@ function checkCombination(){
 
     for(var i = 0; i < 4; i++){
 
-      if(userCombination[i] === tempCombination[i]){
+      if(userCombination[i] === mainCombination[i]){
 
           correct_number_correct_spot++;
 
-      } else if(userCombination[i] !== tempCombination[i] && userCombination.indexOf(tempCombination[i]) !== -1){
+      } else if(userCombination.indexOf(mainCombination[i]) !== -1){
 
-            correct_number_wrong_spot++;
+          correct_number_wrong_spot++;
 
       } 
 
     }
     
+    
+//    console.log(correct_number_wrong_spot + ' wrong spot');
+//    console.log(correct_number_correct_spot + ' correct spot');
+    
     // show results wrong/correct spot
-    if(correct_number_correct_spot > 0){
-        for(var j = 1; j <= correct_number_correct_spot; j++){
-            document.querySelector('.result_wrapper').innerHTML += resultsTrue;
-        }
+    
+    
+    var quessNumber = 4 - (correct_number_correct_spot + correct_number_wrong_spot);
+    
+    for(var cs = 1; cs <= correct_number_correct_spot; cs++){
+        document.querySelector('.result_wrapper').innerHTML += resultsTrue;
     }
-    if(correct_number_wrong_spot > 0){
-        for(var k = 1; k <= correct_number_wrong_spot; k++){
-            document.querySelector('.result_wrapper').innerHTML += resultsFalse;
-            results[i].className = 'color_white';
-        }  
-
+    for(var ws = 1; ws <= correct_number_wrong_spot; ws++){
+        document.querySelector('.result_wrapper').innerHTML += resultsFalse;
+        results[i].className = 'color_white';
+    }  
+    for(var qn = 0; qn < quessNumber; qn++){
+        document.querySelector('.result_wrapper').innerHTML += results;
     }
-    var quessNumber = correct_number_correct_spot + correct_number_wrong_spot;
-        console.log(quessNumber);
 
-    if(quessNumber == 0){
-        for(var t = 0; t < 4; t++){
-            document.querySelector('.result_wrapper').innerHTML += results;
-        }
-    }else if(quessNumber < 4){
-        for(var z = 0; z < 4 - quessNumber; z++){
-            document.querySelector('.result_wrapper').innerHTML += results;
-        }
-    } 
       
     if(correct_number_correct_spot === 4){
         
@@ -120,12 +116,11 @@ function checkCombination(){
         
     }
     
-    if(userCombination.join('') === tempCombination.join('')){
+    if(userCombination.join('') === mainCombination.join('')){
         alert('Your guess is correct');
     }
     
-//    console.log(correct_number_wrong_spot + ' wrong spot');
-//    console.log(correct_number_correct_spot + ' correct spot');
+    
 
 
 } // END checkCombination function
@@ -135,7 +130,7 @@ function startGame(){
     minVal = 1;
     maxVal = 7;
     userCombination = [];
-    tempCombination = [];
+    mainCombination = [];
     correct_number_correct_spot = 0;
     correct_number_wrong_spot = 0;
     guessElems = '';
